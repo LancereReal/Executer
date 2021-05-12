@@ -1,0 +1,59 @@
+if game.CoreGui:FindFirstChild("WSJP") then
+	game.CoreGui["WSJP"]:Destroy()
+end
+local library = loadstring(game:HttpGet("https://zypher.wtf/UI-Lib"))()
+local Main = library:CreateMain({
+    -- Required
+    projName = "WSJP", -- The name for the UI in game.CoreGui, not the GUI itself.
+    -- Optional
+    Resizable = true, -- Requires MinSize and MaxSize
+    MinSize = UDim2.new(0, 300, 0, 300),
+    MaxSize = UDim2.new(0, 650, 0, 600)
+})
+local Category2 = Main:CreateCategory("WS/JP")
+local Section2 = Category2:CreateSection("Player Scripts")
+local Text0 = Section2:Create("Textlabel", "Gui Made By LancereScripts on YouTube")
+Section2:Create("Slider", "Walk Speed", -- The name of the slider
+    function(w)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = w
+    end,
+    {
+        -- Required
+        min = 16, -- Smallest value on the slider
+        max = 2000, -- Largest value on the slider
+
+        -- Optional
+        default = 16,
+        precise = false, -- Whether to do decimal values
+        changeablevalue = false -- Should the slider be changeable
+    }
+)
+Section2:Create("Slider", "Jump Height", -- The name of the slider
+    function(j)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = j
+    end,
+    {
+        -- Required
+        min = 50, -- Smallest value on the slider
+        max = 2000, -- Largest value on the slider
+
+        -- Optional
+        default = 50,
+        precise = false, -- Whether to do decimal values
+        changeablevalue = false -- Should the slider be changeable
+    }
+)
+Section2:Create("Keybind", "Toggle Gui", -- The name of the keybind
+    function()
+        local WSJP = game.CoreGui.WSJP
+        if WSJP.Enabled == true then
+        	WSJP.Enabled = false
+        elseif WSJP.Enabled == false then
+        	WSJP.Enabled = true
+        end
+    end,
+    {
+        -- Optional
+        default = Enum.KeyCode.Q
+    }
+)
